@@ -1,3 +1,22 @@
-<h1>
-  {{title}}
-</h1>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="name1">NAME</label>
+  <div>
+    <input type="text" name="name1" [formControl]="myForm.controls['name1']">
+  </div>
+<span *ngIf="!myForm.controls['name1'].valid && myForm.controls['name1'].dirty">Required<br/></span>
+        
+  <br/>
+  
+  <label for="email">EMAIL</label>
+  <div>
+  <input type="text" name="email" [formControl]="myForm.controls['email']" />
+  </div>
+  <span *ngIf="!myForm.controls['email'].valid">REQUIRED</span>
+  <br/>
+  <div>
+    <input type="text" name="post" [formControl]="myForm.controls['post']" />
+  </div>
+  <span *ngIf="!myForm.controls['post'].valid && myForm.controls['post'].touched">Length less that 10</span>
+  <button type="submit" [disabled]="!myForm.valid">SUBMIT</button>
+  <button type="submit" (click)='getData()'>GET DATA</button>
+</form>
